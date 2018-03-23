@@ -42,6 +42,26 @@ export class BaseService {
         })
     }
 
+    executePost(url: string, body: string) {
+        return Observable.create(observer => {
+            let url_request: string = `${API_URL}/${url}`
+
+            this.authHttp
+                .post(url_request, body, this.requestOptions)
+                .subscribe(
+                    (res: Response) => {
+                        observer.next(res.json())
+                    },
+                    err => {
+                        observer.error(err)
+                    },
+                    () => {
+                        observer.complete()
+                    }
+                )
+        })
+    }
+
     handleError(error: any) {
         console.log('handleError', error)
 

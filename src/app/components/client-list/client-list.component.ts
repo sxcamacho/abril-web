@@ -8,7 +8,7 @@ import { Client } from '../../models/client'
 })
 export class ClientListComponent implements OnInit {
     @Input() clients: Array<Client>
-    listTitle: 'clients'
+    @Input() loading: boolean
 
     constructor() {}
 

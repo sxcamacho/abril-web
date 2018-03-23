@@ -1,5 +1,19 @@
-<div class="text-center">
-  <div class="client-list-container">
-    <app-client-list [clients]="clients"></app-client-list>
-  </div>
+<div class="text-center client-list-container">
+    <div>
+        <app-client-list [clients]="clients" [loading]="loading"></app-client-list>
+    </div>
+    <div class="card bg-dark text-center">
+        <h5 class="card-header">Crear Nuevo Cliente</h5>
+        <div class="card-body">
+            <p class="card-text">Cree un nuevo cliente para comenzar guardar sus registros</p>
+            <div style="max-width: 60%; margin: 0 auto; margin-bottom: 20px">
+                <h5 class="card-title">...</h5>
+                <input type="text" class="form-control" placeholder="Enter a reference name or title" [(ngModel)]="newClientName" />
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="generateClient()">Generar Cliente</button>
+            </div>
+        </div>
+    </div>
+
 </div>

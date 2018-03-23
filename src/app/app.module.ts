@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
+import { FormsModule } from '@angular/forms'
 import { Http } from '@angular/http'
 import {
     TranslateModule,
@@ -27,6 +28,7 @@ import { ClientService } from './services/client.service'
     ],
     imports: [
         BrowserModule,
+        FormsModule,
         AppRouting,
         TranslateModule.forRoot({
             provide: TranslateLoader,

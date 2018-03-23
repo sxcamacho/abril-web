@@ -11,12 +11,14 @@ import { ClientService } from '../../services/client.service'
 export class ClientsPageComponent implements OnInit {
     loading: boolean
     clients: Array<Client>
+    newClientName: string
 
     constructor(
         private authService: AuthService,
         private clientService: ClientService
     ) {
         this.clients = new Array<Client>()
+        this.newClientName = ''
     }
 
     ngOnInit() {
@@ -24,12 +26,32 @@ export class ClientsPageComponent implements OnInit {
     }
 
     loadClients() {
-        debugger
         this.loading = true
 
         this.clientService.getClients().subscribe(
             res => {
-                this.clients = res.map(item => new Client(item))
+                this.clients = res
+            },
+            error => {
+                console.error(error)
+                //error action
+            },
+            () => {
+                //common end action
+                this.loading = false
+            }
+        )
+    }
+
+    generateClient() {
+        let body = {
+            client: {
+                title: this.newClientName,
+            },
+        }
+        this.clientService.createClient(body).subscribe(
+            res => {
+                this.clients.push(res)
             },
             error => {
                 console.error(error)
